@@ -12,9 +12,9 @@ const excludeDirectories = ['translator', 'utils'];
 const excludeFileTypes = ['.test.ts'];
 
 type Translation = {
-  defaultValue: string,
-  translation: string,
-}
+  defaultValue: string;
+  translation: string;
+};
 const results: Record<string, Translation> = {};
 
 await scanForTranslations();
@@ -75,7 +75,9 @@ function extractTranslations(filePath: string) {
         node.callee.type === 'Identifier' &&
         node.callee.name === 'Translator'
       ) {
-        const hackNode: any = node
+        const hackNode: any = node;
+
+        // always add singular translatable
         results[hackNode.arguments[0]?.value] = {
           translation: '',
           defaultValue: hackNode.arguments[1]?.properties?.find(
@@ -83,8 +85,11 @@ function extractTranslations(filePath: string) {
           )?.value?.value,
         };
 
+        // maybe add plural translatable
         if (
-          hackNode.arguments[1]?.properties?.find((prop: any) => prop.key.name === 'count')
+          hackNode.arguments[1]?.properties?.find(
+            (prop: any) => prop.key.name === 'count',
+          )
         ) {
           results[`${hackNode.arguments[0]?.value}_plural`] = {
             translation: '',
