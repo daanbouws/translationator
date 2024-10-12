@@ -1,6 +1,6 @@
 import { Translator } from './translator.js'
 import { test, expect } from "vitest";
-import {translationsStore} from "./store.js";
+import {inject} from "./store.js";
 
 test("defaults to empty string", () => {
   const t = new Translator()
@@ -8,6 +8,7 @@ test("defaults to empty string", () => {
 });
 
 test('translate', () => {
+  const translationsStore = inject('translations')
   translationsStore.initializeWith({
     'some-trans-key': 'some other translation',
   })

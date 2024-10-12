@@ -11,4 +11,9 @@ class TranslationStore {
   }
 }
 
-export const translationsStore = new TranslationStore()
+const injectablesMap = new Map()
+injectablesMap.set('translations', new TranslationStore())
+
+export function inject(key: string) {
+  return injectablesMap.get(key)
+}
