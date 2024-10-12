@@ -1,0 +1,28 @@
+{
+  "name": "translationator",
+  "version": "0.0.1",
+  "description": "messing around with translations",
+  "scripts": {
+    "build": "tsc",
+    "ci": "npm run build",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "demo",
+    "typescript"
+  ],
+  "homepage": "https://github.com/daanbouws/translationator.git",
+  "author": "Daan Bouws",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daanbouws/translationator.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  }
+}
