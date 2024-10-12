@@ -4,8 +4,8 @@
   "description": "messing around with translations",
   "scripts": {
     "build": "tsc",
-    "ci": "npm run build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+     "test": "vitest run"
   },
   "keywords": [
     "demo",
@@ -23,6 +23,7 @@
   "type": "module",
   "devDependencies": {
     "prettier": "^3.3.3",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2"
   }
 }
