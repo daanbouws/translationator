@@ -72,7 +72,17 @@ function extractTranslations(filePath: string) {
         results[node.arguments[0]?.value] = {
           value: '',
           // @ts-ignore
-          defaultValue: node.arguments[1].properties[0].value.value
+          defaultValue: node.arguments[1].properties.find(prop => prop.key.name === 'defaultValue')?.value?.value
+        }
+
+        // @ts-ignore
+        if (node.arguments[1].properties.find(prop => prop.key.name === 'count')) {
+          // @ts-ignore
+          results[`${node.arguments[0]?.value}_plural`] = {
+            value: '',
+            // @ts-ignore
+            defaultValue: node.arguments[1].properties.find(prop => prop.key.name === 'defaultPlural')?.value?.value
+          }
         }
       }
     },
