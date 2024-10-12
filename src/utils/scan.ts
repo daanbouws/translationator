@@ -11,7 +11,11 @@ const { mkdirSync, writeFileSync, removeSync } = fsExtraPackage;
 const excludeDirectories = ['translator', 'utils'];
 const excludeFileTypes = ['.test.ts'];
 
-const results: any = {};
+type Translation = {
+  defaultValue: string,
+  translation: string,
+}
+const results: Record<string, Translation> = {};
 
 await scanForTranslations();
 
@@ -71,25 +75,21 @@ function extractTranslations(filePath: string) {
         node.callee.type === 'Identifier' &&
         node.callee.name === 'Translator'
       ) {
-        // @ts-ignore
-        results[node.arguments[0]?.value] = {
-          value: '',
-          // @ts-ignore
-          defaultValue: node.arguments[1].properties.find(
-            (prop) => prop.key.name === 'defaultValue',
+        const hackNode: any = node
+        results[hackNode.arguments[0]?.value] = {
+          translation: '',
+          defaultValue: hackNode.arguments[1]?.properties?.find(
+            (prop: any) => prop.key.name === 'defaultValue',
           )?.value?.value,
         };
 
-        // @ts-ignore
         if (
-          node.arguments[1].properties.find((prop) => prop.key.name === 'count')
+          hackNode.arguments[1]?.properties?.find((prop: any) => prop.key.name === 'count')
         ) {
-          // @ts-ignore
-          results[`${node.arguments[0]?.value}_plural`] = {
-            value: '',
-            // @ts-ignore
-            defaultValue: node.arguments[1].properties.find(
-              (prop) => prop.key.name === 'defaultPlural',
+          results[`${hackNode.arguments[0]?.value}_plural`] = {
+            translation: '',
+            defaultValue: hackNode.arguments[1]?.properties?.find(
+              (prop: any) => prop.key.name === 'defaultPlural',
             )?.value?.value,
           };
         }
