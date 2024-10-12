@@ -1,7 +1,6 @@
 import { Translator } from './translator.js';
 import { test, expect } from 'vitest';
-import { TRANSLATIONS } from './store.js';
-import { inject } from '../utils/inject.js';
+import { TranslationResource } from "./resource.js";
 
 test('defaults to empty string', () => {
   const t = new Translator('', { defaultValue: '' });
@@ -9,8 +8,8 @@ test('defaults to empty string', () => {
 });
 
 test('translate', () => {
-  const translationsStore = inject(TRANSLATIONS);
-  translationsStore.initializeWith({
+  const setter = new TranslationResource()
+  setter.initializeResourceWith({
     'some-trans-key': 'some other translation',
   });
   const t = new Translator('some-trans-key', { defaultValue: '' });
@@ -21,13 +20,13 @@ test('can overwrite translations', () => {
   const t = new Translator('my-key', { defaultValue: '' });
   expect(t.translate()).to.equal('');
 
-  const translationsStore = inject(TRANSLATIONS);
-  translationsStore.initializeWith({
+  const setter = new TranslationResource()
+  setter.initializeResourceWith({
     'my-key': 'lobsters',
   });
   expect(t.translate()).to.equal('lobsters');
 
-  translationsStore.setTranslations({
+  setter.writeToResource({
     'my-key': 'mobsters',
   })
   expect(t.translate()).to.equal('mobsters');

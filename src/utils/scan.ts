@@ -80,7 +80,7 @@ function extractTranslations(filePath: string) {
 }
 
 async function writeTranslationFiles(directory: string) {
-  const translationPackageDirectory = path.join(directory, 'gen_translations')
+  const translationPackageDirectory = path.join(directory, 'gen_translation_template')
 
   await cleanup(translationPackageDirectory)
   await createDirectory(translationPackageDirectory)

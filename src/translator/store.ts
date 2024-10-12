@@ -2,13 +2,13 @@ import { register } from '../utils/inject.js';
 
 export const TRANSLATIONS = Symbol('TRANSLATIONS');
 
-type TranslationsSet = Record<string, string>;
+export type Translations = Record<string, string>;
 
 @register(TRANSLATIONS)
 class TranslationStore {
-  translations: Map<string, string> = new Map();
+  private translations: Map<string, string> = new Map();
 
-  initializeWith(translations: TranslationsSet) {
+  initializeWith(translations: Translations) {
     for (const translation in translations) {
       const exists = this.translations.get(translation) != undefined;
       if (exists) continue;
@@ -16,7 +16,7 @@ class TranslationStore {
     }
   }
 
-  setTranslations(translations: TranslationsSet) {
+  setTranslations(translations: Translations) {
     for (const translation in translations) {
       this.translations.set(translation, translations[translation] || '');
     }
