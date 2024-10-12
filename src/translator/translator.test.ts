@@ -44,3 +44,19 @@ test('supports interpolation', () => {
   })
   expect(t.translate()).to.equal('Hello Daan')
 })
+
+test('support pluralization', () => {
+  const setter = new TranslationResource()
+  setter.initializeResourceWith({
+    'orange-counter': '{{count}} apple',
+    'orange-counter_plural': '{{count}} apples'
+  })
+
+  const t = new Translator('orange-counter', {
+    defaultValue: '{{count}} orange',
+    defaultPlural: '{{count}} oranges',
+    count: 2,
+  })
+
+  expect(t.translate()).to.equal('2 apples')
+})

@@ -1,10 +1,22 @@
 import { TRANSLATIONS } from './store.js';
 import { inject } from '../utils/inject.js';
 
-export type TranslatorOptions = {
+type TranslatorOptionsBase = {
   defaultValue: string,
   [key: string]: any;
 }
+
+type SingularTranslateOptions = {
+  count?: never;
+  defaultPlural?: never;
+}
+
+type PluralTranslateOptions = {
+  count: number;
+  defaultPlural: string;
+}
+
+export type TranslatorOptions = TranslatorOptionsBase & (SingularTranslateOptions | PluralTranslateOptions)
 
 export class Translator {
   store = inject(TRANSLATIONS);
@@ -15,7 +27,12 @@ export class Translator {
     translationKey: string = '',
     options: TranslatorOptions,
   ) {
-    this.key = translationKey;
+    if (options.count && options.count > 1) {
+      this.key = `${translationKey}_plural`
+    } else {
+      this.key = translationKey;
+    }
+
     this.options = options
   }
 
