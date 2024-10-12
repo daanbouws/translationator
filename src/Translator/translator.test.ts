@@ -16,3 +16,19 @@ test('translate', () => {
   const t = new Translator('some-trans-key');
   expect(t.translate()).to.equal('some other translation');
 });
+
+test('can overwrite translations', () => {
+  const t = new Translator('my-key');
+  expect(t.translate()).to.equal('');
+
+  const translationsStore = inject(TRANSLATIONS);
+  translationsStore.initializeWith({
+    'my-key': 'lobsters',
+  });
+  expect(t.translate()).to.equal('lobsters');
+
+  translationsStore.setTranslations({
+    'my-key': 'mobsters',
+  })
+  expect(t.translate()).to.equal('mobsters');
+})
