@@ -1,5 +1,5 @@
-import { inject } from './inject.js';
 import { TRANSLATIONS } from './store.js';
+import { inject } from '../utils/inject.js';
 
 export class Translator {
   store = inject(TRANSLATIONS);

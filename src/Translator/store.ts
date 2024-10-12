@@ -1,8 +1,8 @@
-import { register } from './inject.js';
+import { register } from '../utils/inject.js';
 
 export const TRANSLATIONS = Symbol('TRANSLATIONS');
 
-type TranslationsSet = Record<string, string>
+type TranslationsSet = Record<string, string>;
 
 @register(TRANSLATIONS)
 class TranslationStore {

@@ -8,6 +8,6 @@ export function register(key: symbol) {
   };
 }
 
-export function inject(key: string) {
+export function inject(key: symbol) {
   return injectablesMap.get(key);
 }

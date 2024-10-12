@@ -1,7 +1,7 @@
 import { Translator } from './translator.js';
 import { test, expect } from 'vitest';
-import { inject } from './inject.js';
 import { TRANSLATIONS } from './store.js';
+import { inject } from '../utils/inject.js';
 
 test('defaults to empty string', () => {
   const t = new Translator();
