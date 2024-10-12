@@ -1,2 +1,2 @@
 export { Translator } from './translator/translator.js';
-export { TranslationResource } from './translator/resource.js'
+export { TranslationResource } from './translator/resource.js';

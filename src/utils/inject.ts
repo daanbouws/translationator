@@ -11,8 +11,8 @@ export function register(key: symbol) {
 export function inject(key: symbol) {
   const module = injectablesMap.get(key);
   if (module == undefined) {
-    throw new Error(`cant find module for ${key.toString()}`)
+    throw new Error(`cant find module for ${key.toString()}`);
   }
 
-  return module
+  return module;
 }
