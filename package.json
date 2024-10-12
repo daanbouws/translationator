@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write .",
-     "test": "vitest run"
+    "test": "vitest run"
   },
   "keywords": [
     "demo",
