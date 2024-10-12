@@ -6,7 +6,7 @@
     "build": "tsc",
     "format": "prettier --write .",
     "test": "vitest run",
-    "extract": "node dist/utils/scan.js"
+    "scan": "node dist/utils/scan.js"
   },
   "keywords": [
     "demo",

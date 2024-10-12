@@ -18,10 +18,7 @@ await scanForTranslations()
 export async function scanForTranslations() {
   const componentsDirectory = path.join(pwd, 'src')
 
-  console.log(componentsDirectory)
-
   await searchFilesForTranslatorNodes(componentsDirectory)
-  console.log(results)
   await writeTranslationFiles(pwd)
 }
 
