@@ -62,3 +62,19 @@ test('support pluralization', () => {
 
   expect(t.translate()).to.equal('2 apples');
 });
+
+test('can be singular if pluralable', () => {
+  const setter = new TranslationResource();
+  setter.initializeResourceWith({
+    'orange-counter': '{{count}} apple',
+    'orange-counter_plural': '{{count}} apples',
+  });
+
+  const t = new Translator('orange-counter', {
+    defaultValue: '{{count}} orange',
+    defaultPlural: '{{count}} oranges',
+    count: 1,
+  });
+
+  expect(t.translate()).to.equal('1 apple');
+})
