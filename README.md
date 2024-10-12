@@ -27,3 +27,6 @@ exposes a Translator object, a TranslationResource object and a scan executable.
   This scripts, meant to be included in the consumer's pipeline scans code looking for Translator constructors.
   It collects the parameters to the constructor and pieces them together to generate a translation template 
    
+```
+  npm run scan
+```
