@@ -24,6 +24,7 @@
   "type": "module",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
+    "fs-extra": "^11.0.4",
     "@types/node": "^22.7.5",
     "acorn": "^8.12.1",
     "acorn-typescript": "^1.4.13",

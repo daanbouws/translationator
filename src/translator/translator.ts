@@ -26,7 +26,7 @@ export class Translator {
     )
   }
 
-  translate() {
+  translate(): string {
     return this.interpolate(
       this.store.translations.get(this.key) || this.options.defaultValue,
       this.options

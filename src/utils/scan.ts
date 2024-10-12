@@ -71,6 +71,8 @@ function extractTranslations(filePath: string) {
         // @ts-ignore
         results[node.arguments[0]?.value] = {
           value: '',
+          // @ts-ignore
+          defaultValue: node.arguments[1].properties[0].value.value
         }
       }
     },
