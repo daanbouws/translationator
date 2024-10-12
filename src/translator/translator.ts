@@ -23,12 +23,15 @@ export class Translator {
   store = inject(TRANSLATIONS);
   key: string;
   options: TranslatorOptions;
+  default: string;
 
   constructor(translationKey: string = '', options: TranslatorOptions) {
     if (options.count && options.count > 1) {
       this.key = `${translationKey}_plural`;
+      this.default = options.defaultPlural;
     } else {
       this.key = translationKey;
+      this.default = options.defaultValue;
     }
 
     this.options = options;
@@ -45,7 +48,7 @@ export class Translator {
 
   translate(): string {
     return this.interpolate(
-      this.store.translations.get(this.key) || this.options.defaultValue,
+      this.store.translations.get(this.key) || this.default,
       this.options,
     );
   }

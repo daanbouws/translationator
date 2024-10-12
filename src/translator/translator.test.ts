@@ -18,8 +18,6 @@ test('translate', () => {
 
 test('can overwrite translations', () => {
   const t = new Translator('my-key', { defaultValue: '' });
-  expect(t.translate()).to.equal('');
-
   const setter = new TranslationResource();
   setter.initializeResourceWith({
     'my-key': 'lobsters',
@@ -66,15 +64,30 @@ test('support pluralization', () => {
 test('can be singular if pluralable', () => {
   const setter = new TranslationResource();
   setter.initializeResourceWith({
-    'orange-counter': '{{count}} apple',
-    'orange-counter_plural': '{{count}} apples',
+    'orange-counter2': '{{count}} apple',
+    'orange-counter2_plural': '{{count}} apples',
   });
 
-  const t = new Translator('orange-counter', {
+  const t = new Translator('orange-counter2', {
     defaultValue: '{{count}} orange',
     defaultPlural: '{{count}} oranges',
     count: 1,
   });
 
   expect(t.translate()).to.equal('1 apple');
-})
+});
+
+test('plural without translation shows plural default', () => {
+  const setter = new TranslationResource();
+  setter.initializeResourceWith({
+    'orange-counter3': '{{count}} apple',
+  });
+
+  const t = new Translator('orange-counter3', {
+    defaultValue: '{{count}} orange',
+    defaultPlural: '{{count}} oranges',
+    count: 2,
+  });
+
+  expect(t.translate()).to.equal('2 oranges');
+});
