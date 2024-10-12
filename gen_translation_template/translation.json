@@ -1,0 +1,11 @@
+{
+  "simple-key": { "translation": "", "defaultValue": "simple" },
+  "my-example-key": {
+    "translation": "",
+    "defaultValue": "Hello {{name}}!, can you count to {{count}}?"
+  },
+  "my-example-key_plural": {
+    "translation": "",
+    "defaultValue": "Hello group of {{name}}s!, can you count to {{count}}?"
+  }
+}
