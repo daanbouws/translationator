@@ -13,16 +13,16 @@ exposes a Translator object, a TranslationResource object and a scan executable.
   The translation resource object lets you write translations to the store that the translator object looks in.
   The idea being that you fill in the generated translation template to create translations, which you load in again with this resource.
 
-    ```
-      const setter = new TranslationResource();
-      setter.initializeResourceWith({
-        'simple-key': 'not simple',
-      });
-      const t = new Translator('simple-key', {
-        defaultValue: 'simple',
-      });
-      console.log(t.translate()) // 'not simple'
-    ```
+  ```
+    const setter = new TranslationResource();
+    setter.initializeResourceWith({
+      'simple-key': 'not simple',
+    });
+    const t = new Translator('simple-key', {
+      defaultValue: 'simple',
+    });
+    console.log(t.translate()) // 'not simple'
+  ```
 4. A scan executable
   This scripts, meant to be included in the consumer's pipeline scans code looking for Translator constructors.
   It collects the parameters to the constructor and pieces them together to generate a translation template 
