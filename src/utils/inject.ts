@@ -1,19 +1,18 @@
-window.injectablesMap = new Map();
+const injectablesMap: Map<symbol, any> = new Map();
 
 type EmptyConstructor<T = any> = new () => T;
 
 export function register(key: symbol) {
   return (constructor: EmptyConstructor) => {
-    window.injectablesMap.set(key, new constructor());
+    injectablesMap.set(key, new constructor());
   };
 }
 
 export function inject(key: symbol) {
-  return window.injectablesMap.get(key);
-}
-
-declare global {
-interface Window {
-    injectablesMap
+  const module = injectablesMap.get(key);
+  if (module == undefined) {
+    throw new Error(`cant find module for ${key.toString()}`)
   }
+
+  return module
 }
