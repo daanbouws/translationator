@@ -78,11 +78,6 @@ test('can be singular if pluralable', () => {
 });
 
 test('plural without translation shows plural default', () => {
-  const setter = new TranslationResource();
-  setter.initializeResourceWith({
-    'orange-counter3': '{{count}} apple',
-  });
-
   const t = new Translator('orange-counter3', {
     defaultValue: '{{count}} orange',
     defaultPlural: '{{count}} oranges',
